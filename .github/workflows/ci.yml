@@ -1,20 +1,21 @@
 name: CI
-
 on:
   push:
     branches: [main]
   pull_request:
-
+permissions:
+  contents: read
 jobs:
   build:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build NeuroShell
+      - name: Build Debug
+        run: xcodebuild -project NeuroShell.xcodeproj -scheme NeuroShell -configuration Debug -destination 'generic/platform=macOS' -derivedDataPath build CODE_SIGNING_ALLOWED=NO build
+      - name: Build universal Release
+        run: xcodebuild -project NeuroShell.xcodeproj -scheme NeuroShell -configuration Release -destination 'generic/platform=macOS' -derivedDataPath build 'ARCHS=arm64 x86_64' ONLY_ACTIVE_ARCH=NO CODE_SIGNING_ALLOWED=NO build
+      - name: Verify app bundle
         run: |
-          xcodebuild \
-            -project NeuroShell.xcodeproj \
-            -scheme NeuroShell \
-            -destination 'platform=macOS' \
-            CODE_SIGNING_ALLOWED=NO \
-            build
+          test -f build/Build/Products/Release/NeuroShell.app/Contents/Info.plist
+          lipo -verify_arch arm64 x86_64 build/Build/Products/Release/NeuroShell.app/Contents/MacOS/NeuroShell
+          plutil -lint build/Build/Products/Release/NeuroShell.app/Contents/Info.plist

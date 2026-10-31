@@ -37,7 +37,7 @@ flowchart LR
 | Platform | macOS 14+ |
 | Language | Swift 5 |
 | UI | SwiftUI |
-| Tooling | Xcode 15+ |
+| Tooling | Full Xcode 16+ |
 
 ## Interfaces
 
@@ -71,7 +71,7 @@ flowchart LR
 ## Security and reliability notes
 
 - Runs locally on operator workstation; no network dependency for core guidance flows.
-- Pre-build git snapshot phase documented in Xcode build phases for reproducibility.
+- Builds do not stage or commit source files. The former automatic Git snapshot build phase was removed.
 
 ## Evidence map (reviewer paths)
 
@@ -90,3 +90,9 @@ Record significant decisions in `docs/adr/`. Start with `docs/adr/0001-record-ar
 **Maintained by:** [Dark Heart Labs](https://darkheartlabs.technology)  
 **Author:** Jennifer ([@jv-darkheartlabs](https://github.com/jv-darkheartlabs))  
 **Site:** https://darkheartlabs.technology
+
+## Verified source and release boundaries
+
+Current suggestion and task-guidance logic uses deterministic local rules/templates. No hosted language-model or TARS integration was found in the inspected Swift source. App Sandbox remains enabled; unrestricted command execution and filesystem access are not established by compilation.
+
+The existing v2.0 release archive was inspected without launching it: macOS14 minimum, Intel x86_64 only, unsigned. Repaired workflows target universal arm64/x86_64 builds, without signing/notarization. No replacement release is created merely by pushing source repairs.

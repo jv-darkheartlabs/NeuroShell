@@ -1,3 +1,5 @@
+> **Implementation status:** The AI/TARS architecture described below is a historical design proposal, not a verified integration in the current app. Inspected Swift source uses local keyword rules and task templates; no TARS client or hosted model calls were found. Read the current README for build/release limitations. Descriptions below must not be used as implemented-feature claims without separate verification.
+
 # 🧠 NeuroShell
 
 **A kinder terminal for differently wired minds.**
@@ -31,7 +33,7 @@ This matters because **15–20% of developers are neurodivergent**, and the tool
 
 ---
 
-## AI Feature Summary
+## Proposed AI Feature Summary
 
 NeuroShell integrates AI capabilities across four core areas of the user experience:
 
@@ -76,7 +78,7 @@ The AI isn't a chatbot bolted onto a terminal — it's woven into every interact
 
 ## How You Are Using Tetrate
 
-NeuroShell leverages **Tetrate's TARS (Tetrate AI Runtime System)** as the intelligent routing and model orchestration layer that powers its AI features.
+The historical proposal describes **Tetrate's TARS (Tetrate AI Runtime System)** as the intelligent routing and model orchestration layer that powers its AI features.
 
 ### TARS Routing
 TARS acts as the unified AI gateway for all of NeuroShell's inference needs. Rather than hardcoding a single model provider, TARS routing allows NeuroShell to:

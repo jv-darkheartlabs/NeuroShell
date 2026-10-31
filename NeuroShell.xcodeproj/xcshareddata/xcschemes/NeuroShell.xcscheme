@@ -15,7 +15,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AA000400"
+               BlueprintIdentifier = "1103047C2F5FFA0D006E30CB"
                BuildableName = "NeuroShell.app"
                BlueprintName = "NeuroShell"
                ReferencedContainer = "container:NeuroShell.xcodeproj">
@@ -44,7 +44,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "AA000400"
+            BlueprintIdentifier = "1103047C2F5FFA0D006E30CB"
             BuildableName = "NeuroShell.app"
             BlueprintName = "NeuroShell"
             ReferencedContainer = "container:NeuroShell.xcodeproj">
@@ -61,7 +61,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "AA000400"
+            BlueprintIdentifier = "1103047C2F5FFA0D006E30CB"
             BuildableName = "NeuroShell.app"
             BlueprintName = "NeuroShell"
             ReferencedContainer = "container:NeuroShell.xcodeproj">

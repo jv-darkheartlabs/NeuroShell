@@ -9,7 +9,7 @@ macOS SwiftUI terminal assistant with structured task guidance, session context 
 [![SwiftUI](https://img.shields.io/badge/UI-SwiftUI-purple)]()
 [![License](https://img.shields.io/badge/license-MIT-green)]()
 
-An AI-powered terminal assistant designed for ADHD/AuDHD users struggling with executive dysfunction. It breaks complex commands into simple steps, provides gentle reminders, reduces decision paralysis with smart suggestions, and offers distraction-free workflows.
+A terminal assistant designed around structured task guidance and focus-oriented workflows. Command suggestions and task breakdowns use built-in rules and templates; the current source does not call a hosted language model. It breaks complex commands into simple steps, provides gentle reminders, reduces decision paralysis with smart suggestions, and offers distraction-free workflows.
 
 
 ## ANZSCO 261312 Skills Snapshot
@@ -32,9 +32,11 @@ An AI-powered terminal assistant designed for ADHD/AuDHD users struggling with e
 
 ### Requirements
 - macOS 14.0+
-- Xcode 15+
+- Full Xcode 16+ (Command Line Tools alone cannot build the app bundle)
 
 ### Build & Run
+Open the project with full Xcode and select the shared **NeuroShell** scheme. Build with your normal local signing configuration. The project does not automatically stage or commit files during builds.
+
 ```
 git clone https://github.com/jv-darkheartlabs/NeuroShell.git
 cd NeuroShell
@@ -43,11 +45,13 @@ open NeuroShell.xcodeproj
 Press **⌘R** in Xcode to build and run.
 
 ### Download
-Check [Releases](https://github.com/jv-darkheartlabs/NeuroShell/releases) for pre-built `.app` binaries. Tag `v*` (e.g. `v0.1.0`) triggers GitHub Actions to build and attach `NeuroShell-macOS.zip`.
+The existing v2.0 ZIP contains an **unsigned Intel x86_64 app** requiring macOS 14+. It is not a universal Apple Silicon binary and is not a freshly validated build of the repaired project. No replacement release has been published during this repair.
+
+Check [Releases](https://github.com/jv-darkheartlabs/NeuroShell/releases) for pre-built `.app` binaries. Tag `v*` triggers GitHub Actions to build and attach an unsigned universal `NeuroShell-macOS.zip`. A successful build is not notarization or runtime validation.
 
 ## 📖 Documentation
 
-See [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md) for full architecture, AI features, and implementation details.
+See [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md) for architecture, rule-based guidance features, and implementation details.
 
 ## ⌨️ Keyboard Shortcuts
 
@@ -130,3 +134,9 @@ Use Conventional Commits for presentation clarity:
 **Maintained by:** [Dark Heart Labs](https://darkheartlabs.technology)  
 **Author:** Jennifer ([@jv-darkheartlabs](https://github.com/jv-darkheartlabs))  
 **Site:** https://darkheartlabs.technology
+
+## Validation boundaries
+
+CI builds Debug and universal Release bundles without distribution signing, then checks the app bundle architecture. The project currently enables App Sandbox. External command execution and filesystem access remain subject to sandbox permissions; do not assume it behaves as an unrestricted terminal. A native runtime walkthrough, real terminal-command checks and audio interaction checks are separate from compilation.
+
+A release should be tested on the intended Mac architectures and reviewed for signing/notarization before it is presented as an install-ready download. Do not treat the older recording script as proof that every feature has been verified.
